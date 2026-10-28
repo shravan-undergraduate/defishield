@@ -1,36 +1,48 @@
-
 # DeFiShield
 
-A GenLayer-based prototype for investigating DeFi liquidation disputes.
+A prototype for investigating DeFi liquidation disputes using Python and GenLayer intelligent contracts.
 
 ## Problem
 
-Liquidation disputes can arise when a borrower believes a liquidation used
-an incorrect, stale, or otherwise questionable price.
+Liquidation disputes can arise when a borrower believes a liquidation was triggered using stale oracle data, incorrect prices, or incorrectly applied protocol rules.
 
 ## Proposed Solution
 
-DeFiShield evaluates a submitted liquidation case against available evidence
-and documented protocol rules.
+DeFiShield evaluates liquidation cases against configurable rules and submitted evidence, producing a verdict with an explanation.
 
-## Planned Verdicts
+## Verdicts
 
-- SUPPORTED: Evidence supports the liquidation dispute.
-- CONTRADICTED: Evidence conflicts with the dispute.
-- INCONCLUSIVE: Evidence is insufficient to reach a reliable conclusion.
+- **SUPPORTED:** The configured rules identify evidence supporting the dispute.
+- **CONTRADICTED:** The configured rules indicate that the stated liquidation condition was met.
+- **INCONCLUSIVE:** The evidence is invalid or insufficient to reach a verdict.
 
-## Project Scope
+## Current Features
 
-- Historical and simulated cases only
-- Evidence-based adjudication
-- Transparent verdicts and explanations
-- Automated tests for conflicting or missing evidence
+- Python-based evaluation prototype
+- Collateral ratio and liquidation threshold checks
+- Oracle data age validation
+- Price deviation validation
+- Input validation
+- Sample cases and automated unit tests
+- GenLayer intelligent contract prototype
 
-## Safety
+## Project Structure
 
-This is an experimental prototype. It does not control funds, execute trades,
-or provide authoritative financial or legal decisions.
+- `defishield.py`: Python evaluator
+- `run_cases.py`: Runs sample cases
+- `data/sample_cases.json`: Sample case data
+- `tests/`: Automated Python tests
+- `contracts/defishield.py`: GenLayer contract
+- `frontend/`: Frontend development folder
 
-## Status
+## Safety and Limitations
 
-Initial setup. Development has not yet begun.
+This is an experimental prototype using simplified demonstration rules. It does not control funds, execute trades, or provide authoritative financial or legal decisions. Results depend on the configured rules and the quality of the submitted evidence.
+
+## Future Improvements
+
+- Integrate verifiable historical transaction evidence
+- Add protocol-specific liquidation rules
+- Validate oracle prices and timestamps against reliable sources
+- Expand contract testing
+- Build a frontend for submitting and reviewing disputes
