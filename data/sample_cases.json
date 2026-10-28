@@ -1,0 +1,53 @@
+
+[
+  {
+    "case_id": "DS-001",
+    "description": "Oracle price is stale",
+    "collateral_ratio": 1.35,
+    "liquidation_threshold": 1.50,
+    "oracle_age_seconds": 180,
+    "max_oracle_age_seconds": 60,
+    "price_deviation_percent": 1.0,
+    "max_price_deviation_percent": 2.0
+  },
+  {
+    "case_id": "DS-002",
+    "description": "Price deviation exceeds the limit",
+    "collateral_ratio": 1.35,
+    "liquidation_threshold": 1.50,
+    "oracle_age_seconds": 30,
+    "max_oracle_age_seconds": 60,
+    "price_deviation_percent": 5.0,
+    "max_price_deviation_percent": 2.0
+  },
+  {
+    "case_id": "DS-003",
+    "description": "Position meets the liquidation condition",
+    "collateral_ratio": 1.40,
+    "liquidation_threshold": 1.50,
+    "oracle_age_seconds": 30,
+    "max_oracle_age_seconds": 60,
+    "price_deviation_percent": 1.0,
+    "max_price_deviation_percent": 2.0
+  },
+  {
+    "case_id": "DS-004",
+    "description": "Position is above the liquidation threshold",
+    "collateral_ratio": 1.80,
+    "liquidation_threshold": 1.50,
+    "oracle_age_seconds": 30,
+    "max_oracle_age_seconds": 60,
+    "price_deviation_percent": 1.0,
+    "max_price_deviation_percent": 2.0
+  },
+  {
+    "case_id": "DS-005",
+    "description": "Price deviation evidence is missing",
+    "collateral_ratio": 1.35,
+    "liquidation_threshold": 1.50,
+    "oracle_age_seconds": 30,
+    "max_oracle_age_seconds": 60,
+    "price_deviation_percent": null,
+    "max_price_deviation_percent": 2.0
+  }
+]
