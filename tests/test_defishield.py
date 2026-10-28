@@ -18,38 +18,43 @@ class TestDeFiShield(unittest.TestCase):
 
     def test_stale_oracle_price(self):
         self.case["oracle_age_seconds"] = 180
-
         result = evaluate_dispute(self.case)
-
         self.assertEqual(result["verdict"], "SUPPORTED")
 
     def test_liquidation_condition_was_met(self):
         self.case["collateral_ratio"] = 1.40
-
         result = evaluate_dispute(self.case)
-
         self.assertEqual(result["verdict"], "CONTRADICTED")
 
     def test_missing_evidence(self):
         self.case["price_deviation_percent"] = None
-
         result = evaluate_dispute(self.case)
-
         self.assertEqual(result["verdict"], "INCONCLUSIVE")
 
     def test_excessive_price_deviation(self):
         self.case["price_deviation_percent"] = 5.0
-
         result = evaluate_dispute(self.case)
-
         self.assertEqual(result["verdict"], "SUPPORTED")
 
     def test_negative_evidence_value(self):
         self.case["oracle_age_seconds"] = -10
-
         result = evaluate_dispute(self.case)
-
         self.assertEqual(result["verdict"], "INCONCLUSIVE")
+
+    def test_invalid_text_value(self):
+        self.case["oracle_age_seconds"] = "old"
+        result = evaluate_dispute(self.case)
+        self.assertEqual(result["verdict"], "INCONCLUSIVE")
+
+    def test_missing_required_field(self):
+        del self.case["liquidation_threshold"]
+        result = evaluate_dispute(self.case)
+        self.assertEqual(result["verdict"], "INCONCLUSIVE")
+
+    def test_exact_liquidation_threshold(self):
+        self.case["collateral_ratio"] = self.case["liquidation_threshold"]
+        result = evaluate_dispute(self.case)
+        self.assertEqual(result["verdict"], "CONTRADICTED")
 
 
 if __name__ == "__main__":
